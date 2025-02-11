@@ -1,0 +1,45 @@
+Arguments:
+  /usr/local/bin/node /usr/local/bin/yarn link
+
+PATH:
+  /Applications/MAMP/bin/php/php8.1.13/bin:/Applications/MAMP/bin/php/php8.1.13/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/anvar/Documents/shodiyona/node_modules/.bin
+
+Yarn version:
+  1.22.19
+
+Node version:
+  20.15.1
+
+Platform:
+  darwin arm64
+
+Trace:
+  SyntaxError: /Users/anvar/Documents/shodiyona/modules/payme/package.json: Expected double-quoted property name in JSON at position 127
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest:
+  {
+    "name": "payme",
+    "version": "1.0.0",
+    "main": "dist/user.seeder.ts",
+    "license": "MIT",
+    "scripts": {
+      "build": "tsc",
+    },
+    "dependencies": {
+      "string-template": "^1.0.0"
+    },
+    "devDependencies": {
+      "@types/string-template": "^1.0.0"
+    }
+  }
+
+yarn manifest:
+  No manifest
+
+Lockfile:
+  No lockfile

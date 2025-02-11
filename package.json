@@ -1,0 +1,20 @@
+{
+  "name": "payme",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "author": "Zaripboyev Anvar",
+  "keywords": [
+    "payme", "integration", "payment-system", "subscription"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@nestjs/axios": "^3.0.3",
+    "axios": "^1.7.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
