@@ -9,7 +9,7 @@ Payment gateway integrator package for NestJs App
 O&#8216;rnatish (installation)
 
 ```
-npm install payme-integration
+npm install nest-payme
 ```
 
 Muhit o&#8216;zgaruvchilari (Environment variables)
