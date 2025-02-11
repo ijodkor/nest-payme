@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from "@nestjs/config";
 import * as crypto from 'crypto';
+import * as process from "process";
 
 @Injectable()
 export class EncryptionService {

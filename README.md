@@ -1,10 +1,10 @@
 # Payme - Elektron to&#8216;lov tizimi
 
-NestJs ilovalar uchun Payme ETT bilan integratsiyaq qilish uchun kutubxona.
+NestJs ilovalar uchun Payme ETT bilan integratsiya qilish uchun kutubxona.
 
 Payment gateway integrator package for NestJs App
 
-### O&#8216;rnatish va sozlash (Installation and setup)
+## O&#8216;rnatish va sozlash (Installation and setup)
 
 O&#8216;rnatish (installation)
 
@@ -20,93 +20,103 @@ PAYME_MERCHANT_ID=
 PAYME_MERCHANT_KEY=
 ```
 
-### Foydalanish (Usage)
+## Foydalanish (Usage)
 
 Namuna (example)
-```ts
-import { HttpException, Inject, Injectable } from '@nestjs/common';
-import { Cache as MCache, CACHE_MANAGER } from "@nestjs/cache-manager";
-import { CardService, ReceiptService } from "payme";
-import { v4 as uuidV4 } from 'uuid';
 
-import { PaymentTransactionService } from "@/modules/balance/transaction/payment-transaction.service";
-import { PreparePaymentDto } from "@/modules/account/dto/payment/prepare-payment.dto";
-import { PayPaymentDto } from "@/modules/account/dto/payment/pay-payment.dto";
-import { ProductService } from "@/modules/account/services/product.service";
+```ts
+import {HttpException, Inject, Injectable} from '@nestjs/common';
+import {Cache as MCache, CACHE_MANAGER} from "@nestjs/cache-manager";
+import {CardService, ReceiptService} from "payme";
+import {v4 as uuidV4} from 'uuid';
+
+import {PaymentTransactionService} from "@/modules/balance/transaction/payment-transaction.service";
+import {PreparePaymentDto} from "@/modules/account/dto/payment/prepare-payment.dto";
+import {PayPaymentDto} from "@/modules/account/dto/payment/pay-payment.dto";
+import {ProductService} from "@/modules/account/services/product.service";
 
 @Injectable()
 export class PaymentService {
 
-  constructor(
-    @Inject(CACHE_MANAGER) private cacheManager: MCache,
-    private readonly transactionService: PaymentTransactionService,
-    private readonly receiptService: ReceiptService,
-    private readonly cardService: CardService,
-  ) {}
-
-  public async prepare(dto: PreparePaymentDto) {
-    // Create a token
-    const { token } = await this.cardService.create(dto);
-
-    // Get code for verifying
-    await this.cardService.getCode(token);
-
-    // Create new receipt (there is account contains only uuid)
-    const account = {};
-    const receipt = await this.receiptService.create(
-      account,
-      dto.amount,
-      {
-        receipt_type: 0,
-        items: [
-          {
-            title: "Xizmat",
-            price: dto.amount,
-            discount: 0,
-            count: 1,
-            code: "10305001001000000",
-            package_code: "1504169",
-            vat_percent: 0
-          }
-        ]
-      }
-    );
-
-    // Create transaction
-    // ...
-    // Store token to cache
-
-    return {
-      account,
-      amount: receipt.amount
+    constructor(
+        @Inject(CACHE_MANAGER) private cacheManager: MCache,
+        private readonly transactionService: PaymentTransactionService,
+        private readonly receiptService: ReceiptService,
+        private readonly cardService: CardService,
+    ) {
     }
-  }
 
-  async pay(dto: PayPaymentDto) {
-    // Verify code
-    await this.cardService.getCode(dto.code);
+    public async prepare(dto: PreparePaymentDto) {
+        // Create a token
+        const {token} = await this.cardService.create(dto);
 
-    // Get token from cache
-    const token: any = "..."
+        // Get code for verifying
+        await this.cardService.getCode(token);
 
-    // Find transaction
-    const { receiptId, balanceId } = await this.transactionService.findById(dto.uuid);
+        // Create new receipt (there is account contains only uuid)
+        const account = {};
+        const receipt = await this.receiptService.create(
+            account,
+            dto.amount,
+            {
+                receipt_type: 0,
+                items: [
+                    {
+                        title: "Xizmat",
+                        price: dto.amount,
+                        discount: 0,
+                        count: 1,
+                        code: "10305001001000000",
+                        package_code: "1504169",
+                        vat_percent: 0
+                    }
+                ]
+            }
+        );
 
-    // Verify card
-    await this.cardService.verify(token, dto.code);
+        // Create transaction
+        // ...
+        // Store token to cache
 
-    // Pay by card
-    const receipt = await this.receiptService.pay(receiptId, token);
+        return {
+            account,
+            amount: receipt.amount
+        }
+    }
 
-    // Update transaction status
-    await this.transactionService.completed(dto.uuid);
+    async pay(dto: PayPaymentDto) {
+        // Verify code
+        await this.cardService.getCode(dto.code);
 
-    return receipt;
-  }
+        // Get token from cache
+        const token: any = "..."
+
+        // Find transaction
+        const {receiptId, balanceId} = await this.transactionService.findById(dto.uuid);
+
+        // Verify card
+        await this.cardService.verify(token, dto.code);
+
+        // Pay by card
+        const receipt = await this.receiptService.pay(receiptId, token);
+
+        // Update transaction status
+        await this.transactionService.completed(dto.uuid);
+
+        return receipt;
+    }
 }
 
 ```
 
+### Mavjud xizmatlar
+
+- Subscribe API
 
 ## Foydalanilgan manbalar (References)
 
+- [Payme Business](https://developer.help.paycom.uz/) - Elektron to‘lov tizimi
+
+### Links
+
+- [Publish an NPM package](https://dev.to/backendbro/a-step-by-step-guide-how-to-create-and-publish-an-npm-package-2off)
