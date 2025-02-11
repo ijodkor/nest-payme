@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { HttpModule } from "@nestjs/axios";
+import { ConfigModule } from "@nestjs/config";
 
 import { EncryptionModule } from "../modules/encryption";
 import { CardService } from './card/card.service';
@@ -9,7 +10,7 @@ import { CardController } from "./card/card.controller";
 import { ReceiptController } from "./receipt/receipt.controller";
 
 @Module({
-  imports: [HttpModule, EncryptionModule],
+  imports: [HttpModule, EncryptionModule, ConfigModule],
   controllers: [CardController, ReceiptController],
   providers: [CardService, RequestService, ReceiptService],
   exports: [CardService, ReceiptService]

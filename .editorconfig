@@ -1,0 +1,24 @@
+# EditorConfig is awesome: https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+
+[*.ts]
+ij_typescript_spaces_within_imports = true
+ij_typescript_spaces_within_object_literal_braces = true
+ij_typescript_imports_wrap = normal
+ij_typescript_block_brace_style = unset  # object literal { a }
+ij_any_keep_simple_methods_in_one_line = true # Simple methods in one line function() {}
+ij_typescript_keep_simple_blocks_in_one_line = true
+# unary additive operator ++,
+# in function expression function ()
+
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = 200
