@@ -9,7 +9,7 @@ Payment gateway integrator package for NestJs App
 O&#8216;rnatish (installation)
 
 ```
-npm install nest-payme
+npm install @ijodkor/nest-payme
 ```
 
 Muhit o&#8216;zgaruvchilari (Environment variables)
@@ -120,3 +120,4 @@ export class PaymentService {
 ### Links
 
 - [Publish an NPM package](https://dev.to/backendbro/a-step-by-step-guide-how-to-create-and-publish-an-npm-package-2off)
+- [Publish as yarn](https://classic.yarnpkg.com/lang/en/docs/publishing-a-package/)

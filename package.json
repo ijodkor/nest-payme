@@ -1,6 +1,6 @@
 {
-  "name": "nest-payme",
-  "version": "1.0.2",
+  "name": "@ijodkor/nest-payme",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Zaripboyev Anvar",
