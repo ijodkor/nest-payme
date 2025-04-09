@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import axios, { AxiosInstance } from "axios";
-import { HttpService } from "@nestjs/axios";
 import { ConfigService } from "@nestjs/config";
 import { EncryptionService } from "../modules/encryption";
 
@@ -14,7 +13,6 @@ export class RequestService {
   private declare readonly secure?: boolean;
 
   constructor(
-    private readonly httpService: HttpService,
     private readonly configService: ConfigService,
     private readonly encryption: EncryptionService
   ) {
