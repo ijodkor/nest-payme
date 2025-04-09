@@ -1,6 +1,6 @@
 {
   "name": "@ijodkor/nest-payme",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Zaripboyev Anvar",
@@ -16,17 +16,17 @@
   "peerDependencies": {
     "@nestjs/axios": "^3.0.0 || ^4.0.0",
     "@nestjs/common": "^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0",
-    "@nestjs/config": "^4.0.0",
-    "@nestjs/swagger": "^11.0.3",
-    "axios": "^1.7.7",
+    "@nestjs/config": "^2.3.0 || ^3.0.0 || ^4.0.0",
+    "@nestjs/swagger": "^7.0.0 || ^11.0.3",
+    "axios": "^1.6.0 || ^1.7.7",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^22.13.1",
+    "@types/node": "^18.0.0 || ^20.0.0 || ^22.13.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.1.0 || ^5.7.2"
   }
 }
