@@ -4,8 +4,8 @@ import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
 
 @Injectable()
 export class EncryptionService {
-  // AES-256
-  private readonly algorithm = 'aes-256-cbc';
+  // AES-128
+  private readonly algorithm = 'aes-128-cbc';
 
   // encryption key
   private readonly key?: any;
