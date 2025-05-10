@@ -13,7 +13,7 @@ export class RequestService {
   private declare readonly secure?: boolean;
 
   constructor(
-    private readonly configService: ConfigService,
+    readonly configService: ConfigService,
     private readonly encryption: EncryptionService
   ) {
     this.cashId = configService.get("PAYME_MERCHANT_ID")!!;

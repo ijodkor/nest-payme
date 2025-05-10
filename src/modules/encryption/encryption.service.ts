@@ -15,6 +15,12 @@ export class EncryptionService {
 
   constructor(private readonly configService: ConfigService) {
     const key = configService.get<any>('APP_KEY');
+    const encrypted = configService.get<any>('PAYME_ENCRYPTION_ENABLE');
+    if (!encrypted) {
+      this.key = null;
+      return;
+    }
+
     const isEnabled = JSON.parse(configService.get<any>('PAYME_ENCRYPTION_ENABLE'));
     if (!isEnabled) {
       this.key = null;
