@@ -1,12 +1,14 @@
-import { Body, Controller, Post, } from '@nestjs/common';
+import { BadRequestException, Body, Controller, HttpException, Post, UseGuards, } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CardCreateDto } from "../dto/card-create.dto";
 import { CardVerifyDto } from "../dto/card-verify.dto";
 import { CardService } from "./card.service";
+import { RouteGuard } from "../../support/guards/route.guard";
 
 @ApiTags('payment')
 @Controller('payment/payme')
+@UseGuards(RouteGuard)
 export class CardController {
   constructor(private readonly cardService: CardService) {}
 
@@ -17,14 +19,12 @@ export class CardController {
       const { token } = card;
       const response = await this.cardService.getCode(token);
       if (!response.result.sent) {
-        throw new Error("Not sent");
+        throw new BadRequestException("Not sent");
       }
 
       return { token }
     } catch (e: any) {
-      return {
-        message: e.message
-      };
+      throw new HttpException(e.message, 400)
     }
   }
 

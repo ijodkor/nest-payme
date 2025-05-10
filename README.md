@@ -109,6 +109,35 @@ export class PaymentService {
 
 ```
 
+Registration
+
+hidden - exclude from Swagger
+
+```ts
+// Register for feature
+SubscriptionModule.forFeature({
+  hidden: false,
+  // options: {
+  //   auth: AuthOption.BASIC_AUTH,
+  //   params: {
+  //     username: '12',
+  //     password: '12',
+  //   },
+  // },
+})
+
+// Registar async
+SubscriptionModule.registerAsync({
+  hidden: false,
+  useFactory: () => ({
+    auth: AuthOption.ANY,
+    useFactory: () => {
+      return true
+    }
+  })
+})
+```
+
 ### Mavjud xizmatlar
 
 - Subscribe API
@@ -121,3 +150,4 @@ export class PaymentService {
 
 - [Publish an NPM package](https://dev.to/backendbro/a-step-by-step-guide-how-to-create-and-publish-an-npm-package-2off)
 - [Publish as yarn](https://classic.yarnpkg.com/lang/en/docs/publishing-a-package/)
+- [Register async](https://www.npmjs.com/package/payme-integration?activeTab=code)
